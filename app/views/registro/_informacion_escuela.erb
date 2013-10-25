@@ -1,0 +1,147 @@
+<div class="container">
+
+  <div class="formee-msg-info">
+    <h3>Información importante</h3>
+    <ul>
+      <li>Los campos marcados con <em class="formee-req">*</em> son obligatorios.</li>
+    </ul>
+  </div>
+
+  <% form_for :escuela, @escuela, :url => { :action => "save", :id => @escuela, :clave => @escuela.clave }, :html => {:class => "formee", :name => "escuela"} do |f| -%>
+  <fieldset>
+    <legend>Registro&nbsp;de&nbsp;Escuelas</legend>
+
+    <div class="grid-1-12 clear"></div>
+    <div id="prellenado" style="background:#ebf7aa;">
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Clave:</label>
+        <label style=" font-style: italic;"><%= @escuela.clave %></label>
+      </div>
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Nombre del Centro de Trabajo:</label>
+        <label style=" font-style: italic;"><%= @escuela.nombre %></label>
+      </div>
+      <div class="grid-1-12 clear"></div>
+
+      <div class="grid-1-12 clear"></div>
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Zona Escolar:</label>
+        <label style=" font-style: italic;"><%= @escuela.zona_escolar %></label>
+      </div>
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Sector:</label>
+        <label style=" font-style: italic;"><%= @escuela.sector %></label>
+      </div>
+      <div class="grid-1-12 clear"></div>
+
+      <div class="grid-1-12 clear"></div>
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Localidad:</label>
+        <label style=" font-style: italic;"><%= @escuela.localidad %></label>
+      </div>
+      <div class="grid-5-12">
+        <label style=" font-weight: bold;">Municipio:</label>
+        <label style=" font-style: italic;"><%= @escuela.municipio %></label>
+      </div>
+      <div class="grid-1-12 clear"></div>
+    </div>
+
+    <!-- categoria -->
+    <div class="grid-6-12">
+      <label>Categoría: <em class="formee-req">*</em></label>
+      <%=f.select :categoria_escuela_id, CategoriaEscuela.all.collect {|p| [ p.descripcion, p.clave ] }, {}, :onchange => "showDescription(this,'escuela_categoria_desc','');"%>
+    </div>
+    <div class="grid-6-12">
+      <%=f.text_area :categoria_desc, :placeholder => "Especifique...", :disabled => 'disabled', :style => "display: none;" %>
+    </div>
+        
+    <!-- programa -->
+    <div class="grid-12-12">
+      <label>La institución educativa participa en algún programa: ¿Cúal?</label>
+       <!-- <=text_field :proyecto, :participa_programa%> -->
+       <%=select(:proyecto, :programa_id, Programa.find(:all).collect {|p| [ p.descripcion, p.id ] })%>
+    </div>
+
+    <!-- director -->
+    <div class="grid-12-12">
+      <label>Nombre del director: <em class="formee-req">*</em></label>
+      <%=f.text_field  :nombre_director%>
+    </div>
+
+    <div class="grid-6-12">
+      <label>Teléfono del director: </label>
+      <%=f.text_field :telefono_director%>
+    </div>
+
+    <div class="grid-6-12">
+      <label>Correo electrónico de la escuela: <em class="formee-req">*</em></label>
+      <%=f.text_field :correo_electronico%>
+    </div>
+
+    <!-- nombre del proyecto -->
+    <div class="grid-12-12">
+      <label>Nombre del proyecto: <em class="formee-req">*</em></label>
+      <%=text_field  :proyecto, :nombre%>
+    </div>
+
+    <!-- responsables -->
+    <div class="grid-12-12">
+      <label>Nombre(s) del (los) responsable (s) del proyecto: <em class="formee-req">*</em></label>
+      <%=text_area  :proyecto, :responsables%>
+    </div>
+
+    <!-- telefono y correo electronico de responsables -->
+    <div class="grid-6-12">
+      <label>Teléfono: </label>
+      <%=text_field :proyecto, :telefono_responsable%>
+    </div>
+
+    <div class="grid-6-12">
+      <label>Correo electrónico: </label>
+      <%=text_field :proyecto, :correo_electronico_responsable%>
+    </div>
+
+    <!-- total de personal -->
+    <div class="grid-4-12">
+      <label>Total personal docente: </label>
+      <%=f.text_field :total_personal_docente%>
+    </div>
+
+    <div class="grid-4-12">
+      <label>Total personal administrativo: </label>
+      <%=f.text_field :total_personal_administrativo%>
+    </div>
+
+    <div class="grid-4-12">
+      <label>Total personal de apoyo: </label>
+      <%=f.text_field :total_personal_apoyo%>
+    </div>
+
+    <!-- submit -->
+    <div class="grid-12-12">
+      <input class="right" type="submit" onclick="to_uppercase();" title="GUARDAR REGISTRO Y GENERAR DOCUMENTOS" value="GUARDAR REGISTRO Y GENERAR DOCUMENTOS" />
+    </div>
+
+  </fieldset>
+       
+  <%end%>
+</div>
+
+<script type="text/javascript">
+  showDescription('escuela[categoria_escuela_id]','escuela_categoria_desc','');
+
+  var categoria_desc = new LiveValidation( 'escuela_categoria_desc', {onlyOnSubmit: true} );
+  categoria_desc.add( Validate.Presence );
+  var nombre_director = new LiveValidation( 'escuela_nombre_director', {onlyOnSubmit: true} );
+  nombre_director.add( Validate.Presence );
+  var proyecto_nombre = new LiveValidation( 'proyecto_nombre', {onlyOnSubmit: true } );
+  proyecto_nombre.add( Validate.Presence );
+  var correo_electronico = new LiveValidation( 'escuela_correo_electronico' );
+  correo_electronico.add( Validate.Presence, {onlyOnSubmit: true } );
+  correo_electronico.add( Validate.Email );
+  var proyecto_responsable = new LiveValidation( 'proyecto_responsables', {onlyOnSubmit: true } );
+  proyecto_responsable.add( Validate.Presence );
+</script>
+
+
+

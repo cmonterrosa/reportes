@@ -1,0 +1,97 @@
+<div class="container">
+<% form_for :user, @user, :url => { :action => "create", :controller => "users"}, :html => {:class => "formee"} do |f| -%>
+  <fieldset>
+
+    <legend>REGISTRO&nbsp;DE&nbsp;NUEVO&nbsp;USUARIO</legend>
+
+
+    <div class="formee-msg-info">
+    <h3>Información importante</h3>
+    <ul>
+      <li>El registro es para docentes, directores técnicos, supervisores o jefes de sector.<br />
+          Los campos marcados con <em class="formee-req">*</em> son obligatorios.
+      </li>
+     
+    </ul>
+   </div>
+
+
+    <div class="grid-form">
+      <% @user.password = @user.password_confirmation = nil %>
+      <%= error_messages_for :user %>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>RFC con homonimia (13 dígitos): <em class="formee-req">*</em></label>
+      <%=f.text_field :login%>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Apellido paterno: <em class="formee-req">*</em></label>
+      <%=f.text_field :paterno%>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Apellido materno: <em class="formee-req">*</em></label>
+      <%=f.text_field :materno%>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Nombre(s): <em class="formee-req">*</em></label>
+      <%=f.text_field :nombre%>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Correo electrónico: (Para recuperación de contraseña)</label>
+      <%=f.text_field :email%>
+    </div>
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Contraseña: <em class="formee-req">*</em></label>
+      <%=f.password_field :password%>
+    </div>
+
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <label>Confirmar contraseña: <em class="formee-req">*</em></label>
+      <%=f.password_field :password_confirmation%>
+    </div>
+
+    <div class="grid-12-12 clear"></div>
+
+    <div class="grid-form">
+      <input class="right" type="submit" title="CREAR USUARIO" value="CREAR USUARIO" />
+    </div>
+    
+  </fieldset>
+<%end%>
+</div>
+
+<script type="text/javascript">
+
+  <%#*var f29 = new LiveValidation('escuela_categoria_escuela_id');%>
+  <%#*f29.add(Validate.Exclusion, { within: ['', null]});%>
+
+  var login = new LiveValidation( 'user_login', {onlyOnSubmit: true} );
+  login.add( Validate.Presence );
+  var nombre = new LiveValidation( 'user_nombre', {onlyOnSubmit: true } );
+  nombre.add( Validate.Presence );
+  var email = new LiveValidation( 'user_email' );
+  email.add( Validate.Email );
+  var password = new LiveValidation( 'user_password' );
+  password.add( Validate.Presence, {onlyOnSubmit: true } );
+  password.add( Validate.Length, { minimum: 6 } );
+  var password_confirmation = new LiveValidation( 'user_password_confirmation' );
+  password_confirmation.add( Validate.Confirmation, { match: 'user_password'} );
+</script>
+
+
+
+

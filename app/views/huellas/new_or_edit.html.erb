@@ -1,0 +1,585 @@
+<% form_for :huella, @huella, :url => { :action => "save", :id => @huella, :diagnostico => @diagnostico.id }, :html => {:class => "formee"} do |f| -%>
+<table class="principal" width="100%" border="0" align="center" cellpadding="2" cellspacing="1" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid;">
+  <tr bgcolor="#003366" style="opacity: 0.7;">
+    <td align="center"><h4>EJE 3: HUELLA ECOLÓGICA</h4></td>
+  </tr>
+  <tr align="center">
+    <td align="center">
+      <table class="subprincipal" width="100%" border="0" cellpadding="4" cellspacing="1" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid;">
+        <tr>
+          <td colspan="3" align="center"><label>¿La escuela da mantenimiento correctivo y preventivo a las instalaciones eléctricas, hidráulicas y de gas?</label></td>
+        </tr>
+        <tr>
+          <td align="center" colspan="3">
+            <span id="r_mant_instalaciones" class="InputGroup">
+            <label>SI <%= f.radio_button :mant_instalaciones, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :mant_instalaciones, "NO"%></label>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- NUEVO RENGLON -->
+        <tr>
+          <td colspan="3" align="justify"><label>¿La escuela cuenta con equipos eléctricos y electrónicos para el desempeño de sus actividades administrativas y escolares?</label></td>
+        </tr>
+
+        <!-- computadoras -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">COMPUTADORAS</th>
+          <td>CUANTAS:</td>
+          <td><%= f.select :computadoras_num, (0..25), {}, :onchange => "validate_exists(this, 'huella_computadoras_hrs_diarias');"%></td>
+          
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%= f.select :computadoras_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+         <!-- impresoras -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">IMPRESORAS</th>
+          <td>CUANTAS:</td>
+          <td><%=f.select :impresoras_num, (0..10), {}, :onchange => "validate_exists(this, 'huella_impresoras_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :impresoras_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- Proyectores -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">PROYECTORES</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :proyectores_num, (0..10), {}, :onchange => "validate_exists(this, 'huella_proyectores_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :proyectores_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- Reguladores -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">REGULADORES</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :reguladores_num, (0..25), {}, :onchange => "validate_exists(this, 'huella_reguladores_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :reguladores_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- VENTILADORES -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">VENTILADORES</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :ventiladores_num, (0..15), {}, :onchange => "validate_exists(this, 'huella_ventiladores_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :ventiladores_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- AIRE ACONDICIONADO -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">AIRES ACONDICIONADOS</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :climas_num, (0..15), {}, :onchange => "validate_exists(this, 'huella_climas_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :climas_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+
+        <!-- ENFRIADORES -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">ENFRIADORES</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :enfriadores_num, (0..5), {}, :onchange => "validate_exists(this, 'huella_enfriadores_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :enfriadores_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- CAFETERAS -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">CAFETERAS</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :cafeteras_num, (0..5), {}, :onchange => "validate_exists(this, 'huella_cafeteras_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :cafeteras_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- REFRIGERADORES -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">REFRIGERADORES</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :refrigeradores_num, (0..5), {}, :onchange => "validate_exists(this, 'huella_refrigeradores_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :refrigeradores_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- BOMBA DE AGUA -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">BOMBAS DE AGUA</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :bombas_agua_num, (0..5), {}, :onchange => "validate_exists(this, 'huella_bombas_agua_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :bombas_agua_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+         <!-- APARATOS DE SONIDO -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">APARATOS DE SONIDO</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :aparatos_sonido_num, (0..5), {}, :onchange => "validate_exists(this, 'huella_aparatos_sonido_hrs_diarias');"%></td>
+
+        </tr>
+
+        <tr>
+          <td>HORAS AL DIA:</td>
+          <td><%=f.select :aparatos_sonido_hrs_diarias, (0..24)%></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- nueva linea -->
+        <tr>
+          <td width="49%" align="justify"><label>¿Desconectan los equipos y/o electrónicos cuando no son utilizados?</label></td>
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>¿Utilizan lámparas ahorradoras de energía?</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span id="r_desconectan_equipos_elec" class="InputGroup">
+            <label>SI <%= f.radio_button :desconectan_equipos_elec, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :desconectan_equipos_elec, "NO"%></label>
+            </span>
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <span id="r_utilizan_lamp_ahorradoras" class="InputGroup">
+            <label>SI <%= f.radio_button :utilizan_lamp_ahorradoras, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :utilizan_lamp_ahorradoras, "NO"%></label>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        
+       
+       <!-- tercera linea --> 
+       <tr>
+          <td colspan="3" align="center"><label>¿Se aprovecha la luz natural para las actividades diarias?</label></td>
+       </tr>
+        <tr>
+          <td colspan="3" align="center">
+            <span id="r_aprovecha_luz_natural" class="InputGroup">
+            <label>SI <%= f.radio_button :aprovecha_luz_natural, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :aprovecha_luz_natural, "NO"%></label>
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- cuarta linea -->
+       <tr>
+          <td width="49%" align="justify"><label>Disponibilidad de agua</label></td>
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>Potabilidad de agua</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= f.select :tipo_agua_id, TipoAgua.all.collect{|a| [a.descripcion, a.id]}%>
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <%= f.select :potabilidad_agua_id, PotabilidadAgua.all.collect{|a| [a.descripcion, a.id]}%>
+          </td>
+        </tr>
+
+
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+         <!-- NUEVO RENGLON -->
+        <tr>
+          <td colspan="3" align="center"><label>¿La escuela cuenta con?</label></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        
+        <!-- SANITARIOS -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">SANITARIOS</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :sanitarios_num, (0..5), {}, :onchange => "enable_fugas('huella_sanitarios_num');" %></td>
+
+        </tr>
+
+        <tr>
+          <td>FUGAS:</td>
+          <td>
+            <span class="InputGroup">
+              SI <%= f.radio_button :sanitarios_fugas, "SI"%>&nbsp;&nbsp;
+              NO <%= f.radio_button :sanitarios_fugas, "NO"%>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- BEBEDEROS -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">BEBEDEROS</th>
+          <td>CUANTOS:</td>
+          <td><%=f.select :bebederos_num, (0..5), {}, :onchange => "enable_fugas('huella_bebederos_num');" %></td>
+
+        </tr>
+
+        <tr>
+          <td>FUGAS:</td>
+          <td>
+            <span class="InputGroup">
+              SI <%= f.radio_button :bebederos_fugas, "SI"%>&nbsp;&nbsp;
+              NO <%= f.radio_button :bebederos_fugas, "NO"%>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- TOMAS DE AGUA -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">TOMAS DE AGUA</th>
+          <td>CUANTAS:</td>
+          <td><%=f.select :tomas_agua_num, (0..5), {}, :onchange => "enable_fugas('huella_tomas_agua_num');" %></td>
+
+        </tr>
+
+        <tr>
+          <td>FUGAS:</td>
+          <td>
+            <span class="InputGroup">
+              SI <%= f.radio_button :tomas_agua_fugas, "SI"%>&nbsp;&nbsp;
+              NO <%= f.radio_button :tomas_agua_fugas, "NO"%>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- CISTERNAS -->
+        <tr>
+          <th rowspan="2" class="titulo_electronicos">CISTERNAS</th>
+          <td>CUANTAS:</td>
+          <td><%=f.select :cisternas_num, (0..5), {}, :onchange => "enable_fugas('huella_cisternas_num');" %></td>
+
+        </tr>
+
+        <tr>
+          <td>FUGAS:</td>
+          <td>
+            <span class="InputGroup">
+              SI <%= f.radio_button :cisternas_fugas, "SI"%>&nbsp;&nbsp;
+              NO <%= f.radio_button :cisternas_fugas, "NO"%>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- nueva linea -->
+        <tr>
+          <td width="49%" align="justify"><label>¿Cuenta con sistema de captación de aguas pluviales?</label></td>
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>¿Reutiliza el agua en otras actividades?</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+              <span id="r_captacion_agua_pluv" class="InputGroup">
+              <label>SI <%= f.radio_button :captacion_agua_pluv, "SI"%></label>&nbsp;&nbsp;
+              <label>NO <%= f.radio_button :captacion_agua_pluv, "NO"%></label>
+              </span>
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <span id="r_reutiliza_agua" class="InputGroup">
+            <label>SI <%= f.radio_button :reutiliza_agua, "SI", :onclick => "enabled_textarea('', 'huella_reutiliza_agua_desc');" %></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :reutiliza_agua, "NO", :onclick => "enabled_textarea('', 'huella_reutiliza_agua_desc');" %></label>
+            </span>
+            <%= f.text_area :reutiliza_agua_desc, :placeholder => "Especifique...", :disabled => 'disabled' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- nueva linea -->
+        <tr>
+          <td width="49%" align="justify"><label>¿Cuenta con recipientes para el manejo de residuos sólidos?</label></td>
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>¿Se lleva a cabo la separación de residuos sólidos en orgánicos e inorgánicos?</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span id="r_recip_residuos_solid" class="InputGroup">
+            <label>SI <%= f.radio_button :recip_residuos_solid, "SI", :onclick => "enabled_textarea('huella_recip_residuos_solid', 'huella_recip_residuos_solid_num');" %></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :recip_residuos_solid, "NO", :onclick => "enabled_textarea('huella_recip_residuos_solid', 'huella_recip_residuos_solid_num');" %></label>
+            </span>
+            <label>¿Cuantos?</label><%=f.select :recip_residuos_solid_num, (1..10), {}, :disabled => true%>
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <span id="r_separa_residuos_org_inorg" class="InputGroup">
+            <label>SI <%= f.radio_button :separa_residuos_org_inorg, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :separa_residuos_org_inorg, "NO"%></label>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- nueva linea -->
+        <tr>
+          <td width="49%" align="justify"><label>¿Con los residuos sólidos orgánicos elaboras compostas?</label></td>
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>¿Dentro de las aulas se cuenta con recipientes para residuos sólidos (orgánicos e inorgánicos)?</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span id="r_elabora_compostas_residuos" class="InputGroup" >
+            <label>SI <%= f.radio_button :elabora_compostas_residuos, "SI"%></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :elabora_compostas_residuos, "NO"%></label>
+            </span>
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <span id="r_cuenta_recipientes_org_inorg" class="InputGroup">
+            <label>SI <%= f.radio_button :cuenta_recipientes_org_inorg, "SI", :onclick => "enabled_textarea('huella_cuenta_recipientes_org_inorg', 'huella_cuenta_recipientes_org_inorg_num');" %></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :cuenta_recipientes_org_inorg, "NO", :onclick => "enabled_textarea('huella_cuenta_recipientes_org_inorg', 'huella_cuenta_recipientes_org_inorg_num');" %></label>
+            </span>
+             <label>¿Cuantos?</label><%=f.select :cuenta_recipientes_org_inorg_num, (1..10), {}, :disabled => true%>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- nueva linea -->
+        <tr>
+          <td width="49%" align="justify"><label>¿Se llevan a cabo actividades para la reutilización de residuos sólidos?</label></td>
+          <!--<td bgcolor="#ACACAC" width="49%" align="justify"><label>¿Cuenta con aparatos que utilizan pilas?</label></td>-->
+          <td>&nbsp;</td>
+          <td width="49%" align="justify"><label>¿Cuál es el mecanismo de eliminación de los residuos sólidos?</label></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span id ="r_act_reutiliza_residuos" class="InputGroup">
+            <label>SI <%= f.radio_button :act_reutiliza_residuos, "SI", :onclick => "enabled_textarea('', 'huella_act_reutiliza_residuos_desc');" %></label>&nbsp;&nbsp;
+            <label>NO <%= f.radio_button :act_reutiliza_residuos, "NO", :onclick => "enabled_textarea('', 'huella_act_reutiliza_residuos_desc');" %></label>
+            </span>
+              <%= f.text_area :act_reutiliza_residuos_desc, :placeholder => "Especifique...", :disabled => 'disabled' %>
+
+            <!--<span id="r_aparatos_pilas" class="InputGroup">
+            <%#*<label>SI <%= f.radio_button :aparatos_pilas, "SI", :onclick => "enabled_textarea('huella_aparatos_pilas', 'huella_aparatos_pilas_num');" %></label>&nbsp;&nbsp;%>
+            <%#*<label>NO <%= f.radio_button :aparatos_pilas, "NO", :onclick => "enabled_textarea('huella_aparatos_pilas', 'huella_aparatos_pilas_num');" %></label>%>
+            </span>
+            <%#*<label>¿Cuantos?</label> <%= f.select :aparatos_pilas_num, (1..10), {}, :disabled => "disabled" %> -->
+
+          </td>
+          <td>&nbsp;</td>
+          <td align="center">
+            <%= f.text_area :meca_elim_residuos_solid, :placeholder => "Especifique..."%>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+
+        <!-- ultima linea -->
+        <!--<tr>
+          <td colspan="3" align="justify"><label>¿Se llevan a cabo actividades para la reutilización de residuos sólidos?</label></td>
+        </tr>
+        <tr>
+          <td colspan="3" align="center">
+            <span id ="r_act_reutiliza_residuos" class="InputGroup">
+            <%#*<label>SI <%= f.radio_button :act_reutiliza_residuos, "SI", :onclick => "enabled_textarea('', 'huella_act_reutiliza_residuos_desc');" %></label>&nbsp;&nbsp;%>
+            <%#*<label>NO <%= f.radio_button :act_reutiliza_residuos, "NO", :onclick => "enabled_textarea('', 'huella_act_reutiliza_residuos_desc');" %></label>%>
+            </span>
+              <%#= f.text_area :act_reutiliza_residuos_desc, :placeholder => "Especifique...", :disabled => 'disabled' %>
+          </td>
+        </tr>-->
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right">
+      <table>
+        <tr>
+          <td>
+            <input id="button4" onclick="to_uppercase();" class="buttonText" type="submit" title="Guardar y Regresar" value="Guardar y Regresar" />
+          </td>
+          <td>
+            <a href="<%= diagnosticos_path%>" id="buttonc" class="buttonText"><img src="/images/formee/form-ic-error.png"/>&nbsp;&nbsp;Regresar sin Guardar</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" >&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<% end %>
+
+<script type="text/javascript">
+
+validate_exists_initial('huella_computadoras_num', 'huella_computadoras_hrs_diarias');
+validate_exists_initial('huella_impresoras_num', 'huella_impresoras_hrs_diarias');
+validate_exists_initial('huella_proyectores_num', 'huella_proyectores_hrs_diarias');
+validate_exists_initial('huella_reguladores_num', 'huella_reguladores_hrs_diarias');
+validate_exists_initial('huella_ventiladores_num', 'huella_ventiladores_hrs_diarias');
+validate_exists_initial('huella_climas_num', 'huella_climas_hrs_diarias');
+validate_exists_initial('huella_enfriadores_num', 'huella_enfriadores_hrs_diarias');
+validate_exists_initial('huella_cafeteras_num', 'huella_cafeteras_hrs_diarias');
+validate_exists_initial('huella_refrigeradores_num', 'huella_refrigeradores_hrs_diarias');
+validate_exists_initial('huella_bombas_agua_num', 'huella_bombas_agua_hrs_diarias');
+validate_exists_initial('huella_aparatos_sonido_num', 'huella_aparatos_sonido_hrs_diarias');
+
+enable_fugas('huella_sanitarios_num');
+enable_fugas('huella_bebederos_num');
+enable_fugas('huella_tomas_agua_num');
+enable_fugas('huella_cisternas_num');
+
+enabled_textarea('huella_act_reutiliza_residuos', 'huella_act_reutiliza_residuos_desc');
+enabled_textarea('huella_reutiliza_agua', 'huella_reutiliza_agua_desc');
+enabled_textarea('huella_cuenta_recipientes_org_inorg', 'huella_cuenta_recipientes_org_inorg_num');
+enabled_textarea('huella_recip_residuos_solid', 'huella_recip_residuos_solid_num');
+enabled_textarea('huella_cuenta_recipientes_org_inorg', 'huella_cuenta_recipientes_org_inorg_num');
+enabled_textarea('huella_act_reutiliza_residuos', 'huella_act_reutiliza_residuos_desc');
+<%#*enabled_textarea('huella_aparatos_pilas', 'huella_aparatos_pilas_num');%>
+
+var meca_elim_residuos_solid = new LiveValidation( 'huella_meca_elim_residuos_solid', {onlyOnSubmit: true} );
+meca_elim_residuos_solid.add( Validate.Presence );
+var act_reutiliza_residuos_desc = new LiveValidation( 'huella_act_reutiliza_residuos_desc', {onlyOnSubmit: true} );
+act_reutiliza_residuos_desc.add( Validate.Presence );
+var reutiliza_agua_desc = new LiveValidation( 'huella_reutiliza_agua_desc', {onlyOnSubmit: true} );
+reutiliza_agua_desc.add( Validate.Presence );
+
+jQuery(function(){
+  jQuery("#r_mant_instalaciones").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_desconectan_equipos_elec").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_utilizan_lamp_ahorradoras").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_aprovecha_luz_natural").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_captacion_agua_pluv").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_separa_residuos_org_inorg").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_elabora_compostas_residuos").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  <%#*jQuery("#r_aparatos_pilas").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });%>
+  jQuery("#r_act_reutiliza_residuos").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_cuenta_recipientes_org_inorg").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_recip_residuos_solid").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+  jQuery("#r_reutiliza_agua").validate({ expression: "if (isChecked(SelfID)) return true; else return false;", message: "Seleccione una opción!" });
+});
+</script>

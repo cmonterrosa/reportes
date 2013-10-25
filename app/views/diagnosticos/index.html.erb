@@ -1,0 +1,201 @@
+<script type="text/javascript">
+  
+  jQuery(document).ready(function() {
+
+    jQuery('.fancybox').fancybox();
+
+    jQuery("#fancybox-manual-a").click(function() {
+      $.fancybox.open('1_b.jpg');
+    });
+
+    jQuery("#fancybox-manual-b").click(function() {
+      $.fancybox.open({
+        href : 'iframe.html',
+        type : 'iframe',
+        padding : 5
+	});
+    });
+
+    jQuery("#fancybox-manual-c").click(function() {
+	$.fancybox.open([
+        {
+          href : '1_b.jpg',
+          title : 'My title'
+        }, {
+              href : '2_b.jpg',
+              title : '2nd title'
+            }, {
+                  href : '3_b.jpg'
+                }
+	], {
+            helpers : {
+                        thumbs : {
+                                    width: 75,
+                                    height: 50
+                        }
+            }
+          });
+    });
+  });
+
+</script>
+
+<table>
+<tr>
+  <td colspan="3"><img src="/images/era/btns_cert/tit_4.png" width="299" height="43" /></td>
+</tr>
+<tr>
+  <td colspan="3"><img src="/images/era/space.png" alt="" width="10" height="10" /></td>
+</tr>
+<tr align="center" >
+  <td colspan="3">
+    <table class="subprincipal" cellspacing="5" width="80%" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid;">
+      <tr class="tdiagnostico">
+        <td><label>El Diagnóstico tiene por objeto propiciar la reflexión sobre las actividades que está desarrollando la  escuela y las que podría realizar. Hacer el diagnóstico de manera cuidadosa le permitirá encontrar con mayor facilidad las oportunidades de mejora  y establecer metas en el Proyecto  Ambiental.</label></td>
+      </tr>
+      <tr class="tdiagnostico">
+        <td>
+          <strong><label>RECOMENDACIONES:</label></strong>
+        </td>
+      </tr>
+      <tr class="tdiagnostico" >
+        <td>
+          <label>Responder a todas las preguntas y apartados.</label>
+          <label>Al finalizar una captura siempre dar click en el botón guardar antes de oprimir el botón siguiente.</label>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td colspan="3">&nbsp;</td>
+</tr>
+<!-- Si no existe el diagnostico creado -->
+<%unless Diagnostico.find_by_escuela_id(Escuela.find_by_clave(current_user.login.upcase))%>
+<tr>
+  <td colspan="3"><img src="/images/era/space.png" width="10" height="20px" /></td>
+</tr>
+<tr align="center" >
+  <td colspan="3">
+    <div class="formee">
+      <%=button_to "INICIAR DIAGNÓSTICO", :action => "new_or_edit"%>
+    </div>
+  </td>
+</tr>
+<tr>
+  <td colspan="3"><img src="/images/era/space.png" width="10" height="200px" /></td>
+</tr>
+<%end%>
+<tr align="center" >
+  <td>
+<%if @diagnostico = Diagnostico.find_by_escuela_id(Escuela.find_by_clave(current_user.login.upcase))%>
+  <table border="0" cellpadding="0" cellspacing="0" >
+    <tr align="center" >
+      <td><a href="/competencias/new_or_edit/<%=@diagnostico.id%>" type="image" id="button5" class="buttonText" style="font-weight: bold;"><img src="/images/era/iconos/4.png" alt="Desarrollo de Competencias" onmouseover="this.src='/images/era/iconos/4a.png'" onmouseout="this.src='/images/era/iconos/4.png'"/>Desarrollo&nbsp;de&nbsp;Competencias</a></td>
+      <td>&nbsp;</td>
+      <%if @diagnostico.competencia%>
+      <td><a href="/entornos/new_or_edit/<%=@diagnostico.id%>" type="image" id="button5" class="buttonText" style="font-weight: bold;" ><img src="/images/era/iconos/1.png" alt="Entorno Saludable" onmouseover="this.src='/images/era/iconos/1a.png'" onmouseout="this.src='/images/era/iconos/1.png'"/>&nbsp;Entorno&nbsp;Saludable&nbsp;</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.entorno%>
+      <td><a href="/huellas/new_or_edit/<%=@diagnostico.id%>" type="image" id="button5" class="buttonText" style="font-weight: bold;"><img src="/images/era/iconos/2.png" alt="Huella Ecologica" onmouseover="this.src='/images/era/iconos/2a.png'" onmouseout="this.src='/images/era/iconos/2.png'"/>&nbsp;&nbsp;Huella&nbsp;Ecológica&nbsp;&nbsp;</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+    </tr>
+    <tr align="center">
+      <%if @diagnostico.competencia%>
+      <td><a class="fancybox" href="#competencia" title="EJE 1.- DESARROLLO DE COMPETENCIAS">Sugerencias</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.entorno%>
+      <td><a class="fancybox" href="#entorno" title="EJE 2.- ENTORNO SALUDABLE">Sugerencias</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.huella%>
+      <td><a class="fancybox" href="#huella" title="EJE 3.- HUELLA ECOLÓGICA">Sugerencias</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+    </tr>
+    <tr>
+      <td colspan="5"><img src="/images/era/space.png" width="10px" height="30px" /></td>
+    </tr>
+    <tr align="center">
+      <%if @diagnostico.huella%>
+      <td><a href="/consumos/new_or_edit/<%=@diagnostico.id%>" type="image" id="button5" class="buttonText" style="font-weight: bold;"><img src="/images/era/iconos/3.png" alt="Consumo Saludable" onmouseover="this.src='/images/era/iconos/3a.png'" onmouseout="this.src='/images/era/iconos/3.png'"/>Consumo&nbsp;Saludable&nbsp;Responsable</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.consumo%>
+      <td><a href="/participacions/new_or_edit/<%=@diagnostico.id%>" type="image" id="button5" class="buttonText" style="font-weight: bold;"><img src="/images/era/iconos/5.png" alt="Participación Ciudadana" onmouseover="this.src='/images/era/iconos/5a.png'" onmouseout="this.src='/images/era/iconos/5.png'"/>Participación&nbsp;Ciudadana</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.participacion %>
+        <td><p id="pdf_link"><a href="/diagnosticos/reporte/<%=@diagnostico.id%>.pdf" type="image" id="button5" class="buttonText" target="_blank" style="font-weight: bold;">IMPRIMIR</a></p></td>
+      <%else%>
+        <td>&nbsp;</td>
+      <%end%>
+    </tr>
+    <tr align="center">
+      <%if @diagnostico.consumo%>
+      <td><a class="fancybox" href="#consumo" title="EJE 4.- CONSUMO SALUDABLE">Sugerencias</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <%if @diagnostico.participacion%>
+      <td><a class="fancybox" href="#participacion" title="EJE 5.- PARTICIPACIÓN CIUDADANA">Sugerencias</a></td>
+      <%else%>
+      <td>&nbsp;</td>
+      <%end%>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>   
+<%end%>
+  </td>
+</tr>
+</table>
+
+<div id="competencia" style="width:600px;display: none;">
+  <h3>SUGERENCIAS:</h3>
+  <p style="text-align: justify;" >
+    <% for competencia in @competencias %>
+         <%= competencia.aplica_conocimientos_desc %>
+    <% end %>
+  </p>
+</div>
+<div id="entorno" style="width:600px;display: none;">
+  <h3>SUGERENCIAS:</h3>
+  <p style="text-align: justify;" >
+    Los entornos son llevadas a cabo por los alumnos y por los maestros
+  </p>
+</div>
+<div id="huella" style="width:600px;display: none;">
+  <h3>SUGERENCIAS:</h3>
+  <p style="text-align: justify;" >
+    Las huellas son llevadas a cabo por los alumnos y por los maestros
+  </p>
+</div>
+<div id="consumo" style="width:600px;display: none;">
+  <h3>SUGERENCIAS:</h3>
+  <p style="text-align: justify;" >
+    Las consumos son llevadas a cabo por los alumnos y por los maestros
+  </p>
+</div>
+<div id="participacion" style="width:600px;display: none;">
+  <h3>SUGERENCIAS:</h3>
+  <p style="text-align: justify;" >
+    Las participaciones son llevadas a cabo por los alumnos y por los maestros
+  </p>
+</div>

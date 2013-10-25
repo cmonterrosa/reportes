@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carta_compromiso" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="P_FECHA" class="java.lang.String"/>
+	<parameter name="P_PROCEDENCIA" class="java.lang.String"/>
+	<parameter name="P_DIRECTOR" class="java.lang.String"/>
+	<parameter name="P_ESCUELA" class="java.lang.String"/>
+	<parameter name="P_CLAVE" class="java.lang.String"/>
+	<parameter name="P_LOCALIDAD" class="java.lang.String"/>
+	<parameter name="P_MUNICIPIO" class="java.lang.String"/>
+	<parameter name="P_TRABAJADOR" class="java.lang.String"/>
+	<parameter name="P_RFC" class="java.lang.String"/>
+	<parameter name="P_CORREO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from users]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="login" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="35" y="209" width="502" height="363"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
+					<font fontName="Serif" size="11" isBold="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["El que suscribe: " + $P{P_TRABAJADOR} + " (Docente frente a grupo, Director técnico o Encargado, Jefe de Sector, Jefe de Sector, Supervisor de Zona, etc.) con RFC: " + $P{P_RFC} + ", adscrito a la escuela: " + $P{P_ESCUELA} + ", con clave: " + $P{P_CLAVE} +  " Ubicada en: " + $P{P_MUNICIPIO} + "; Por mi propio derecho y bajo protesta de decir verdad, comunico a esa Autoridad Educativa, que con motivo de la toma de las instalaciones de mi centro de trabajo por el grupo de profesores paristas, actualmente me encuentro prestando mis servicios fuera del centro de trabajo que por Ley me corresponde; por lo que con la presente Carta Compromiso, manifiesto mi voluntad de informar a esa Autoridad sobre las actividades a desarrollar en el futuro inherentes a mi funciones con los educandos por medio electrónico, a través de la cuenta de correo: " + $P{P_CORREO} + " acreditando el cumplimiento de dicha labor con la respectiva lista de asistencia del alumnado bajo mi responsabilidad avalada ya por mi superior jerárquico y/o la Sociedad de Padres de Familia indistintamente." + "\n\n" + "Cumplido lo anterior me asistirá el derecho de cobrar los salarios devengados por el desempeño de mis funciones como docente, en términos de los artículos 24, 25 y 28 de la Ley del Servicio Civil del Estado y los Municipios de Chiapas."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="32" width="288" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["LUGAR: " + $P{P_MUNICIPIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="52" width="288" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["FECHA: " + $P{P_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="128" width="280" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["C. MTRO. RICARDO AGUILAR GORDILLO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="148" width="280" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["SECRETARIO DE EDUCACIÓN"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="168" width="280" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["P R E S E N T E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="616" width="502" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["NOMBRE Y FIRMA"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+</jasperReport>

@@ -37,7 +37,7 @@ class CartaCompromisoController < ApplicationController
       param["P_RFC"]={:tipo=>"String", :valor=>clean_string("MOLC8509121S0")}
       param["P_LOCALIDAD"]={:tipo=>"String", :valor=>clean_string("LAS CRUCES")}
       param["P_MUNICIPIO"]={:tipo=>"String", :valor=>clean_string("TUXTLA GUTIERREZ")}
-      param["P_CORREO"]={:tipo=>"String", :valor=>clean_string("XXXX@GMAIL.COM")}
+      param["P_CORREO"]={:tipo=>"String", :valor=>clean_string("CMONTERROSA@GMAIL.COM")}
       param["P_CLAVE_PRESUPUESTAL"]={:tipo=>"String", :valor=>clean_string("E0363XXXXXXXXXXXXXX")}
      
       param["P_FECHA"]={:tipo=>"String", :valor=>DateTime.now.strftime("%d de %B de %Y").upcase}

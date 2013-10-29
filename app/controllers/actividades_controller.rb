@@ -1,9 +1,11 @@
 class ActividadesController < ApplicationController
   before_filter :login_required
   def index
+    @actividades = Actividad.find(:all, :conditions => ["user_id = ?", current_user.id])
   end
 
   def show
+    @actividad = Actividad.find(params[:id])
   end
 
   def edit

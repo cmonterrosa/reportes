@@ -1,2 +1,40 @@
-<h1>Actividades#show</h1>
-<p>Find me in app/views/actividades/show.html.erb</p>
+<div class="container">
+
+  <div class="formee">
+
+    <h4 style="text-align: center;">DETALLE DE ACTIVIDAD</h4>
+
+       
+
+        <div class="grid-12-12 clear"></div>
+        <div class="grid-12-12 clear"></div>
+
+
+        <fieldset>
+            <div class="grid-6-12">
+             <label style=" font-weight: bold;">Fecha: <%=h @actividad.fechahora.strftime("%d-%b-%Y")%></label>
+            </div>
+
+             <div class="grid-12-12 clear"></div>
+
+             <div class="grid-12-12">
+              <label style=" font-weight: bold;">Descripción corta: <%=h @actividad.descripcion_corta%></label>
+             </div>
+
+             <div class="grid-12-12 clear"></div>
+
+             <div class="grid-12-12">
+              <label style=" font-weight: bold;">Detalle: <%=h text_area :actividad, :detalles, :value => @actividad.detalles%></label>
+             </div>
+        </fieldset>
+  </div>
+</div>
+
+<br /><br />
+
+
+<table>
+  <tr>
+    <td colspan="5" align="center"><%= link_to image_tag("botones/btn_regresar.png", :border =>0) , :controller => "actividades", :action => "index"%></td>
+  </tr>
+</table>

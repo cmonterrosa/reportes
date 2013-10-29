@@ -18,6 +18,23 @@
         
 
         <fieldset>
+
+
+           <%@actividades.each do |actividad|%>
+           <div class="grid-9-12">
+             <label style=" font-weight: bold;">
+               (<%=actividad.fechahora.strftime("%d-%b-%Y")%>) / <%=actividad.descripcion_corta%>
+             </label>
+            </div>
+
+           <div class="grid-3-12">
+              <%=button_to "Detalle", :action => "show", :id => actividad%>
+            </div>
+          <%end%>
+
+
+
+
             <div class="grid-9-12">
              <label style=" font-weight: bold;">
                (23-Octubre-2013) / Visita guiada al museo con alumnos

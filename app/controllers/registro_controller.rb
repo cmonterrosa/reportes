@@ -58,4 +58,8 @@ class RegistroController < ApplicationController
     end
   end
 
+  def carta_compromiso
+    @user = current_user
+  end
+
 end

@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="formee">
+
+    <h4 style="text-align: center;">IMPRESIÓN DE DOCUMENTOS</h4>
+
+
+    <fieldset>
+    <div class="grid-6-12">
+        <label style=" font-weight: bold;">RFC:</label>
+        <label style=" font-style: italic;">xxxxxxx</label>
+    </div>
+
+    <div class="grid-6-12">
+        <label style=" font-weight: bold;">CURP:</label>
+        <label style=" font-style: italic;">xxxxxxx</label>
+    </div>
+    </fieldset>
+
+    <div class="grid-12-12 clear"></div>
+    <div class="grid-12-12 clear"></div>
+
+
+    <h4 style="text-align: center;">CLAVES PRESUPUESTALES</h4>
+
+
+    
+      <fieldset>
+            <div class="grid-6-12">
+              <label style=" font-weight: bold;">PLAZA: EO3333xxxxxxxxxxxxxxxx</label>
+            </div>
+
+            <div class="grid-6-12">
+              <label style=" font-weight: bold;">SUBSISTEMA: FEDERALIZADO</label>
+            </div>
+
+            <!-- BOTON DE IMPRESION -->
+          <div class="grid-12-12">
+            <% form_for :user, @user, :url => { :action => "imprimir", :controller => "carta_compromiso", :id => Plaza.find(1).id }, :html => { :target => "_blank"} do |f| -%>
+              <div class="grid-center">
+                  <input type="submit" title="IMPRIMIR CARTA COMPROMISO" value="IMPRIMIR CARTA COMPROMISO" />
+              </div>
+            <%end%>
+          </div>
+      </fieldset>
+
+
+
+
+    <!-- segunda plaza -->
+       <fieldset>
+            <div class="grid-6-12">
+              <label style=" font-weight: bold;">EO3333A73737373&nbsp;</label>
+            </div>
+
+            <div class="grid-6-12">
+              <label style=" font-weight: bold;">&nbsp;FEDERALIZADA</label>
+            </div>
+
+            <!-- BOTON DE IMPRESION -->
+          <div class="grid-12-12">
+            <% form_for :user, @user, :url => { :action => "imprimir", :controller => "carta_compromiso", :id => Plaza.find(1).id }, :html => { :target => "_blank"} do |f| -%>
+              <div class="grid-center">
+                  <input type="submit" title="IMPRIMIR CARTA COMPROMISO" value="IMPRIMIR CARTA COMPROMISO" />
+              </div>
+            <%end%>
+          </div>
+      </fieldset>
+
+  </div>
+</div>
+
+<br /><br />
+<table>
+  <tr>
+    <td colspan="5" align="center"><%= link_to image_tag("botones/btn_regresar.png", :border =>0) , :controller => "home", :action => "index"%></td>
+  </tr>
+</table>

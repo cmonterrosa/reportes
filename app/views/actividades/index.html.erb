@@ -1,0 +1,64 @@
+<div class="container">
+  
+  <div class="formee">
+
+    <h4 style="text-align: center;">REGISTRO DE ACTIVIDADES</h4>
+
+        <!-- NUEVO REGISTRO -->
+        <div class="grid-12-12">
+            <% form_for :user, @user, :url => { :action => "new_or_edit", :controller => "actividades"} do |f| -%>
+              <div class="grid-center">
+                  <input type="submit" title="NUEVA ACTIVIDAD" value="NUEVA ACTIVIDAD" />
+              </div>
+            <%end%>
+        </div>
+
+        <div class="grid-12-12 clear"></div>
+        <div class="grid-12-12 clear"></div>
+        
+
+        <fieldset>
+            <div class="grid-9-12">
+             <label style=" font-weight: bold;">
+               (23-Octubre-2013) / Visita guiada al museo con alumnos
+             </label>
+            </div>
+         
+           <div class="grid-3-12">
+              <%=button_to "Detalle"%>
+            </div>
+     
+
+           <!-- segundo registro -->
+     
+            <div class="grid-9-12">
+             <label style=" font-weight: bold;">
+               (22-Octubre-2013) / Platica sobre medio ambiente
+             </label>
+            </div>
+
+           <div class="grid-3-12">
+              <%=button_to "Detalle"%>
+            </div>
+
+            <div class="grid-9-12">
+             <label style=" font-weight: bold;">
+               (21-Octubre-2013) / Elaboración de compostas
+             </label>
+            </div>
+
+           <div class="grid-3-12">
+              <%=button_to "Detalle"%>
+            </div>
+      </fieldset>
+  </div>
+</div>
+
+<br /><br />
+
+
+<table>
+  <tr>
+    <td colspan="5" align="center"><%= link_to image_tag("botones/btn_regresar.png", :border =>0) , :controller => "home", :action => "index"%></td>
+  </tr>
+</table>

@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  layout 'registro', :except => :sessions
+  #layout 'registro', :except => :sessions
+  layout 'registro_oficial'
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025183408) do
+ActiveRecord::Schema.define(:version => 20131028200924) do
+
+  create_table "actividads", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "rfc",               :limit => 13
+    t.datetime "fechahora"
+    t.string   "descripcion_corta", :limit => 80
+    t.string   "detalles"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "actividads", ["rfc"], :name => "index_actividads_on_rfc"
+  add_index "actividads", ["user_id"], :name => "index_actividads_on_user_id"
 
   create_table "bitacoras", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
     t.string "clave",       :limit => 23
     t.string "descripcion", :limit => 30
   end
+
+  create_table "centrotrabajos", :force => true do |t|
+    t.string "clave",         :limit => 30
+    t.string "nombre",        :limit => 120
+    t.string "direccion",     :limit => 120
+    t.string "poblacion",     :limit => 120
+    t.string "subsistema_id"
+  end
+
+  add_index "centrotrabajos", ["clave"], :name => "index_centrotrabajos_on_clave"
+  add_index "centrotrabajos", ["subsistema_id"], :name => "index_centrotrabajos_on_subsistema_id"
 
   create_table "competencias", :force => true do |t|
     t.string   "doc_capacitan_salud",         :limit => 3
@@ -97,8 +121,19 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
 
   add_index "diagnosticos", ["escuela_id"], :name => "escuela"
 
+  create_table "empleado_plazas", :force => true do |t|
+    t.integer "empleado_id"
+    t.string  "rfc",                :limit => 13
+    t.string  "clave_presupuestal", :limit => 30
+  end
+
+  add_index "empleado_plazas", ["clave_presupuestal"], :name => "index_empleado_plazas_on_clave_presupuestal"
+  add_index "empleado_plazas", ["empleado_id"], :name => "index_empleado_plazas_on_empleado_id"
+  add_index "empleado_plazas", ["rfc"], :name => "index_empleado_plazas_on_rfc"
+
   create_table "empleados", :force => true do |t|
     t.string "rfc",     :limit => 13
+    t.string "curp",    :limit => 18
     t.string "paterno"
     t.string "materno"
     t.string "nombre"
@@ -129,38 +164,18 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
   add_index "entornos", ["diagnostico_id"], :name => "diagnostico"
 
   create_table "escuelas", :force => true do |t|
-    t.string   "region",                        :limit => 60
-    t.string   "clave",                         :limit => 15
-    t.string   "nombre",                        :limit => 130
-    t.string   "zona_escolar",                  :limit => 20
-    t.string   "sector",                        :limit => 10
-    t.string   "dsr",                           :limit => 4
-    t.string   "telefono",                      :limit => 16
-    t.string   "modalidad",                     :limit => 100
-    t.string   "clave_localidad",               :limit => 10
-    t.string   "localidad",                     :limit => 120
-    t.string   "clave_municipio",               :limit => 10
-    t.string   "municipio",                     :limit => 140
-    t.string   "domicilio",                     :limit => 160
-    t.string   "correo_electronico",            :limit => 90
-    t.string   "nombre_director",               :limit => 130
-    t.string   "telefono_director",             :limit => 100
-    t.string   "categoria_desc",                :limit => 20
-    t.integer  "total_personal_docente"
-    t.integer  "total_personal_administrativo"
-    t.integer  "total_personal_apoyo"
-    t.integer  "nivel_id"
-    t.integer  "categoria_escuela_id"
+    t.string   "clave",        :limit => 15
+    t.string   "nombre",       :limit => 130
+    t.string   "zona_escolar", :limit => 20
+    t.string   "sector",       :limit => 10
+    t.string   "localidad",    :limit => 120
+    t.string   "municipio",    :limit => 140
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "estatu_id"
   end
 
-  add_index "escuelas", ["categoria_escuela_id"], :name => "categoria_escuela"
   add_index "escuelas", ["clave"], :name => "index_escuelas_on_clave", :unique => true
-  add_index "escuelas", ["localidad"], :name => "localidad"
-  add_index "escuelas", ["municipio"], :name => "municipio"
-  add_index "escuelas", ["nivel_id"], :name => "nivel"
 
   create_table "estatus", :force => true do |t|
     t.string "clave",       :limit => 10
@@ -225,6 +240,22 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
 
   add_index "huellas", ["diagnostico_id"], :name => "diagnostico"
 
+  create_table "localidads", :force => true do |t|
+    t.integer "municipio_id"
+    t.string  "clave",        :limit => 8
+    t.string  "descripcion",  :limit => 60
+  end
+
+  add_index "localidads", ["clave"], :name => "index_localidads_on_clave"
+  add_index "localidads", ["municipio_id"], :name => "index_localidads_on_municipio_id"
+
+  create_table "municipios", :force => true do |t|
+    t.string "clave",       :limit => 8
+    t.string "descripcion", :limit => 60
+  end
+
+  add_index "municipios", ["clave"], :name => "index_municipios_on_clave"
+
   create_table "nivels", :force => true do |t|
     t.integer "clave"
     t.string  "descripcion", :limit => 60
@@ -254,6 +285,19 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
   end
 
   add_index "participacions", ["diagnostico_id"], :name => "diagnostico"
+
+  create_table "plazas", :force => true do |t|
+    t.string  "clave_presupuestal"
+    t.integer "subsistema_id"
+    t.integer "centro_trabajo_id"
+    t.integer "municipio_id"
+    t.integer "localidad_id"
+  end
+
+  add_index "plazas", ["centro_trabajo_id"], :name => "index_plazas_on_centro_trabajo_id"
+  add_index "plazas", ["clave_presupuestal", "subsistema_id"], :name => "plaza_sub"
+  add_index "plazas", ["clave_presupuestal"], :name => "index_plazas_on_clave_presupuestal"
+  add_index "plazas", ["subsistema_id"], :name => "index_plazas_on_subsistema_id"
 
   create_table "potabilidad_aguas", :force => true do |t|
     t.string "descripcion", :limit => 12
@@ -293,6 +337,10 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
+  create_table "subsistemas", :force => true do |t|
+    t.string "descripcion"
+  end
+
   create_table "tipo_aguas", :force => true do |t|
     t.string "descripcion", :limit => 12
   end
@@ -312,11 +360,9 @@ ActiveRecord::Schema.define(:version => 20131025183408) do
     t.datetime "remember_token_expires_at"
     t.string   "activation_code",           :limit => 40
     t.datetime "activated_at"
-    t.integer  "escuela_id"
     t.boolean  "blocked"
   end
 
-  add_index "users", ["escuela_id"], :name => "index_users_on_escuela_id"
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["rfc"], :name => "index_users_on_rfc"
 

@@ -1,0 +1,46 @@
+.Tit_Txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	color: 444444;
+	line-height: 45px;
+	font-weight: normal;
+	text-align: center;
+}
+.Txt_Sesion {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: 444444;
+	text-align: center;
+}
+.login {
+	background-image: url(../images/login.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 440px;
+}
+.Txt_Crear {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: lighter;
+	color: #036;
+	text-align: center;
+	font-style: normal;
+}
+.pie {
+	background-image: url(../images/pie.jpg);
+	background-repeat: no-repeat;
+	height: 72px;
+	width: 900px;
+	font-family: "Helvetica LT Std Light";
+	font-size: 16px;
+	color: #FFF;
+	text-indent: 80px;
+	vertical-align: middle;
+}
+.img_body {
+	background-image: url(../images/img_body.jpg);
+	background-repeat: no-repeat;
+	height: 378px;
+	width: 864px;
+	background-position: center;
+}

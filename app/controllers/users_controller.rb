@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    #@escuela = Escuela.new(params[:escuela]) if params[:escuela]
     @trabajador = Empleado.find_by_rfc(@user.login) if @user.login
     if User.find_by_email(@user.email)
       flash[:error]  = "Trabajador ya se registró anteriormente."
@@ -15,17 +16,19 @@ class UsersController < ApplicationController
     else
       @user.activated_at = Time.now
       if @trabajador
+        @user.rfc = @user.login
         success = @user && @user.save
         if success && @user.errors.empty?
           redirect_back_or_default('/registro')
 #          @escuela.update_bitacora!("esc-regis", @user)
-          flash[:notice] = "#{@trabajador.nombre_completo} REGISTRADO CORRECTAMENTE"
+           @user.update_attributes!(:paterno => @trabajador.paterno, :materno => @trabajador.materno, :nombre => @trabajador.nombre)
+          flash[:notice] = "#{@user.nombre_completo} REGISTRADO EXITOSAMENTE"
         else
           flash[:error]  = "No se puedo crear la cuenta, verifique los datos."
           render :action => 'new'
         end
       else
-        flash[:error]  = "No existe escuela con esa clave, intente de nuevo"
+        flash[:error]  = "No existe trabajador con ese RFC, intente de nuevo"
         render :action => 'new'
       end
     end

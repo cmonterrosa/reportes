@@ -2,7 +2,7 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  layout 'registro'
+ 
 
   # render new.erb.html
   def new
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/')
+      redirect_back_or_default('/registro/carta_compromiso')
       flash[:notice] = "Has iniciado sesión"
     else
       note_failed_signin

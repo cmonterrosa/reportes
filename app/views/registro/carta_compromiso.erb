@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="formee">
+
+
+    <h4>DATOS DEL EMPLEADO</h4>
+
+    
+
+
+    <h4 style="text-align: center;">IMPRESIÓN DE DOCUMENTOS</h4>
+
+    <div class="grid-center"><hr /></div>
+
+    <div class="grid-6-12 clear"></div>
+
+
+
+    <!-- carta compromiso -->
+    <% form_for :user, @user, :url => { :action => "carta_compromiso_docente", :controller => "constancia", :id => @user }, :html => { :target => "_blank"} do |f| -%>
+      <div class="grid-center">
+        <input type="submit" title="IMPRIMIR CARTA COMPROMISO" value="IMPRIMIR CARTA COMPROMISO" />
+      </div>
+    </fieldset>
+    <%end%>
+
+  </div>
+</div>

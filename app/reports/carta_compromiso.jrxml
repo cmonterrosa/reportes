@@ -17,6 +17,7 @@
 	<parameter name="P_TRABAJADOR" class="java.lang.String"/>
 	<parameter name="P_RFC" class="java.lang.String"/>
 	<parameter name="P_CORREO" class="java.lang.String"/>
+	<parameter name="P_CLAVE_PRESUPUESTAL" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from users]]>
 	</queryString>
@@ -32,17 +33,17 @@
 				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
 					<font fontName="Serif" size="11" isBold="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["El que suscribe: " + $P{P_TRABAJADOR} + " (Docente frente a grupo, Director técnico o Encargado, Jefe de Sector, Jefe de Sector, Supervisor de Zona, etc.) con RFC: " + $P{P_RFC} + ", adscrito a la escuela: " + $P{P_ESCUELA} + ", con clave: " + $P{P_CLAVE} +  " Ubicada en: " + $P{P_MUNICIPIO} + "; Por mi propio derecho y bajo protesta de decir verdad, comunico a esa Autoridad Educativa, que con motivo de la toma de las instalaciones de mi centro de trabajo por el grupo de profesores paristas, actualmente me encuentro prestando mis servicios fuera del centro de trabajo que por Ley me corresponde; por lo que con la presente Carta Compromiso, manifiesto mi voluntad de informar a esa Autoridad sobre las actividades a desarrollar en el futuro inherentes a mi funciones con los educandos por medio electrónico, a través de la cuenta de correo: " + $P{P_CORREO} + " acreditando el cumplimiento de dicha labor con la respectiva lista de asistencia del alumnado bajo mi responsabilidad avalada ya por mi superior jerárquico y/o la Sociedad de Padres de Familia indistintamente." + "\n\n" + "Cumplido lo anterior me asistirá el derecho de cobrar los salarios devengados por el desempeño de mis funciones como docente, en términos de los artículos 24, 25 y 28 de la Ley del Servicio Civil del Estado y los Municipios de Chiapas."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["El que suscribe: " + $P{P_TRABAJADOR} + ", (Docente frente a grupo, Director técnico o Encargado, Jefe de Sector, Jefe de Sector, Supervisor de Zona, etc.) con RFC: " + $P{P_RFC} + ", clave presupuestal número: " + $P{P_CLAVE_PRESUPUESTAL} + " adscrito a la escuela: " + $P{P_ESCUELA} + ", con clave: " + $P{P_CLAVE} +  " Ubicada en: " + $P{P_MUNICIPIO} + "; Por mi propio derecho y bajo protesta de decir verdad, comunico a esa Autoridad Educativa, que con motivo de la toma de las instalaciones de mi centro de trabajo por el grupo de profesores paristas, actualmente me encuentro prestando mis servicios fuera del centro de trabajo que por Ley me corresponde; por lo que con la presente Carta Compromiso, manifiesto mi voluntad de informar a esa Autoridad sobre las actividades a desarrollar en el futuro inherentes a mi funciones con los educandos por medio electrónico, a través de la cuenta de correo: " + $P{P_CORREO} + ", acreditando el cumplimiento de dicha labor con la respectiva lista de asistencia del alumnado bajo mi responsabilidad avalada ya por mi superior jerárquico y/o la Sociedad de Padres de Familia indistintamente." + "\n\n" + "Cumplido lo anterior me asistirá el derecho de cobrar los salarios devengados por el desempeño de mis funciones como docente, en términos de los artículos 24, 25 y 28 de la Ley del Servicio Civil del Estado y los Municipios de Chiapas."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="249" y="32" width="288" height="20"/>
+				<reportElement x="267" y="32" width="270" height="20"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["LUGAR: " + $P{P_MUNICIPIO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="249" y="52" width="288" height="20"/>
+				<reportElement x="267" y="52" width="270" height="20"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -75,6 +76,13 @@
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["NOMBRE Y FIRMA"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="682" width="502" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{P_TRABAJADOR}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

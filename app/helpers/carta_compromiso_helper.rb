@@ -1,0 +1,2 @@
+module CartaCompromisoHelper
+end

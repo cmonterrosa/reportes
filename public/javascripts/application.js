@@ -93,3 +93,15 @@ function showDescription(select, textfield1, textfield2)
             }
     }
 }
+
+
+$(function() {
+$j('#actividad_fechahora').datetimepicker({
+      timeFormat: 'h:m',
+      showMonthAfterYear: false,
+      numberOfMonths: 1,
+      showOn: 'both',
+      buttonImage: '/images/calendar_mini.png',
+      buttonImageOnly: false
+});
+});

@@ -15,11 +15,9 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :remember_token_expires_at
       t.string   :activation_code,           :limit => 40
       t.datetime :activated_at
-      t.integer :escuela_id
-     end
+    end
     add_index :users, :login, :unique => true
     add_index :users, :rfc
-    add_index :users, :escuela_id
   end
 
   def self.down

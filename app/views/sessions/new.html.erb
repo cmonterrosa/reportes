@@ -1,12 +1,12 @@
 <div class="container">
   <% form_for :user, @user, :url => { :action => "create", :controller => "sessions"}, :html => {:class => "formee"} do |f| -%>
-  <table width="50%" align="center" >
+  <table width="65%" align="center" >
     <tr>
       <td>
         <fieldset>
-          <legend>Ingreso</legend>
+          <legend>Inicia&nbsp;sesión&nbsp;para&nbsp;acceder</legend>
           <div class="grid-login">
-            <label>Clave de la escuela:</label>
+            <label>RFC:</label>
             <%=f.text_field :login%>
           </div>
 

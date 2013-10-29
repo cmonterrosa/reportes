@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>RAEDDE - Secretaría de Educación</title>
+<style type="text/css">
+<!--
+body {
+	margin-top: 0px;
+	background-color: #EDEDED;
+}
+-->
+</style>
+<%#*<link href="css/estilo.css" rel="stylesheet" type="text/css" />%>
+<%= stylesheet_link_tag "nuevo_registro/estilo.css" %>
+
+<!-- formee -->
+<%=javascript_include_tag "formee/jquery-1.6.4.min.js" %>
+<%#=javascript_include_tag "formee/jquery-1.10.1.min.js" %>
+<%=javascript_include_tag "formee/formee.js" %>
+<%=javascript_include_tag "livevalidation/livevalidation_standalone.js" %>
+<%=javascript_include_tag "fancybox/jquery.fancybox.js" %>
+<%=javascript_include_tag "validate/jquery.validate.js" %>
+<%=javascript_include_tag "validate/jquery.validation.functions.js" %>
+<%#=javascript_include_tag "validate/jquery-1.3.2.js" %>
+<%=javascript_include_tag :defaults %>
+
+<%= stylesheet_link_tag "formee/formee-structure.css" %>
+<%= stylesheet_link_tag "formee/formee-style.css" %>
+<%= stylesheet_link_tag "livevalidation/validation.css" %>
+<%= stylesheet_link_tag "fancybox/jquery.fancybox.css" %>
+<%= stylesheet_link_tag "validate/jquery.validate.css" %>
+
+
+<!-- calendario -->
+<%= javascript_include_tag "jquery.min", "jquery-ui.min", "application" %>
+<%=javascript_include_tag "datetimepicker"%>
+<%=javascript_include_tag "datepicker_es"%>
+<%= stylesheet_link_tag "jquery-ui.css", "application" %>
+
+<script type="text/javascript">
+      window.onload=function(){enableTooltips()};
+      // this allows jquery to be called along with scriptaculous and YUI without any conflicts
+      // the only difference is all jquery functions should be called with $j instead of $
+      // e.g. $j('#div_id').stuff instead of $('#div_id').stuff
+      var $j = jQuery.noConflict();
+</script>
+
+
+
+<style type="text/css">
+<!--
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style></head>
+
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td bgcolor="#FFFFFF"><img src="/images/nuevo_registro/bann.jpg" width="900" height="112" /></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" class="Tit_Txt">Registro de Actividades Educativas<br />
+    de Docentes y Directivos Escolares</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <!-- contenido -->
+  <tr>
+    <td bgcolor="#FFFFFF">
+      <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+      <!-- logout -->
+      <tr>
+        <%if logged_in?%>
+           <td align="left" bgcolor="#FFFFFF" style="color: #666666; font-size: 16px;">Conectado como: <%=current_user.nombre_completo%></td>
+           <td align="right" bgcolor="#FFFFFF"><%=link_to image_tag("nuevo_registro/close.png", :border => 0, :size => "150x44", :mouseover => "nuevo_registro/close_2.png"), {:controller => "sessions", :action => "destroy" }, :title => "CERRAR SESIÓN"%></td>
+           <!--
+           <td align="right" bgcolor="#FFFFFF"><p><img src="/images/nuevo_registro/close.png" width="150" height="44" /></p></td>
+           -->
+          <%end%>
+      </tr>
+
+
+     <!-- Contenido principal -->
+        <tr>
+          <td>
+            <%if flash[:notice]%>
+            <div class="formee-msg-success">
+              <h3>Operación realizada exitosamente:</h3>
+              <ul>
+                <li><%=flash[:notice]%></li>
+              </ul>
+            </div>
+            <%elsif flash[:error]%>
+            <div class="formee-msg-error">
+              <h3>Error:</h3>
+              <ul>
+                <li><%=flash[:error]%></li>
+              </ul>
+            </div>
+            <%else%>
+            <%#*<p></p>%>
+            <%end%>
+
+            <%=yield%>
+
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+  <!-- termina contenido -->
+
+  <tr>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" class="pie">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

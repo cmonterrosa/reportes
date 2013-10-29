@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  layout 'registro'
+  layout 'registro_oficial'
+  before_filter :login_required
   
   def index
   end

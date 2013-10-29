@@ -9,7 +9,7 @@
     <h3>Información importante</h3>
     <ul>
       <li>El registro es para docentes, directores técnicos, supervisores o jefes de sector.<br />
-          Los campos marcados con <em class="formee-req">*</em> son obligatorios.
+          Los campos marcados con <em class="formee-req">*</em> son obligatorios.<br />
       </li>
      
     </ul>
@@ -28,23 +28,23 @@
     </div>
     <div class="grid-12-12 clear"></div>
 
-    <div class="grid-form">
-      <label>Apellido paterno: <em class="formee-req">*</em></label>
-      <%=f.text_field :paterno%>
-    </div>
-    <div class="grid-12-12 clear"></div>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Apellido paterno: <em class="formee-req">*</em></label>%>
+      <%#=f.text_field :paterno%>
+    <%#*</div>%>
+    <%#*<div class="grid-12-12 clear"></div>%>
 
-    <div class="grid-form">
-      <label>Apellido materno: <em class="formee-req">*</em></label>
-      <%=f.text_field :materno%>
-    </div>
-    <div class="grid-12-12 clear"></div>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Apellido materno: <em class="formee-req">*</em></label>%>
+      <%#=f.text_field :materno%>
+    <%#*</div>%>
+    <%#*<div class="grid-12-12 clear"></div>%>
 
-    <div class="grid-form">
-      <label>Nombre(s): <em class="formee-req">*</em></label>
-      <%=f.text_field :nombre%>
-    </div>
-    <div class="grid-12-12 clear"></div>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Nombre(s): <em class="formee-req">*</em></label>%>
+      <%#=f.text_field :nombre%>
+    <%#*</div>%>
+    <%#*<div class="grid-12-12 clear"></div>%>
 
     <div class="grid-form">
       <label>Correo electrónico: (Para recuperación de contraseña)</label>
@@ -63,6 +63,51 @@
       <label>Confirmar contraseña: <em class="formee-req">*</em></label>
       <%=f.password_field :password_confirmation%>
     </div>
+
+
+    <%#*<!-- datos de la escuela -->%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Nombre del Centro de Trabajo: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :nombre%>
+    <%#*</div>%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Clave del Centro de Trabajo: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :clave%>
+    <%#*</div>%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Clave del Centro de Trabajo: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :zona_escolar%>
+    <%#*</div>%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Sector: </label>%>
+      <%#=text_field :escuela, :sector%>
+    <%#*</div>%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Nombre de la localidad donde se ubica: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :localidad%>
+    <%#*</div>%>
+
+        <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Nombre del municipio donde se ubica: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :municipio%>
+    <%#*</div>%>
+
+    <%#*<div class="grid-12-12 clear"></div>%>
+    <%#*<div class="grid-form">%>
+      <%#*<label>Nombre del Centro de Trabajo: <em class="formee-req">*</em></label>%>
+      <%#=text_field :escuela, :nombre%>
+    <%#*</div>%>
 
     <div class="grid-12-12 clear"></div>
 

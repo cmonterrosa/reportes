@@ -4,6 +4,7 @@ class CreateEmpleadoPlazas < ActiveRecord::Migration
       t.integer :empleado_id
       t.string :rfc, :limit => 13
       t.string :clave_presupuestal, :limit => 30
+      t.string :ct, :limit => 12
     end
 
     add_index :empleado_plazas, :rfc
@@ -61,7 +62,7 @@ class CreateEmpleadoPlazas < ActiveRecord::Migration
                   :localidad_id => cve_localidad)
 
         ## Creamos el registro en Empleado PLaza ###
-        @empleado_plaza = EmpleadoPlaza.new(:rfc => rfc, :clave_presupuestal => pza)
+        @empleado_plaza = EmpleadoPlaza.new(:rfc => rfc, :clave_presupuestal => pza, :ct => ct)
         @empleado = Empleado.find_by_rfc(rfc)
         @empleado.update_attributes(:curp => curp) if @empleado
         @empleado_plaza.empleado_id = @empleado.id if @empleado

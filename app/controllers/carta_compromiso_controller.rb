@@ -10,13 +10,13 @@ class CartaCompromisoController < ApplicationController
   def index
     @user = current_user
     @empleado = Empleado.find_by_rfc(current_user.login.upcase)
-    @plazas_por_empleado = EmpleadoPlaza.find_by_rfc(@empleado.rfc) if @empleado
-    
-    #render :text => "Empleados encontrados: #{@empleado.rfc}"
+    @plazas_por_empleado = EmpleadoPlaza.find(:all, :conditions => ["rfc = ?", @empleado.rfc]) if @empleado
   end
 
     def imprimir
-    @plaza = Plaza.find(params[:id])
+    @plaza = EmpleadoPlaza.find(params[:id])
+    @rfc=  @plaza.rfc
+    @clave_presupuestal = @plaza.clave_presupuestal
     if @plaza
       param=Hash.new {|k, v| k[v] = {:tipo=>"",:valor=>""}}
       #-- Parametros

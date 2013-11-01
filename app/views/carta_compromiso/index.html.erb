@@ -7,12 +7,12 @@
     <fieldset>
     <div class="grid-6-12">
         <label style=" font-weight: bold;">RFC:</label>
-        <label style=" font-style: italic;">MOLC8509121S0</label>
+        <label style=" font-style: italic;"><%=h @empleado.rfc%></label>
     </div>
 
     <div class="grid-6-12">
         <label style=" font-weight: bold;">CURP:</label>
-        <label style=" font-style: italic;">MOLC850912HCSNPR02</label>
+        <label style=" font-style: italic;"><%=h (@empleado.curp)%></label>
     </div>
     </fieldset>
 
@@ -22,12 +22,12 @@
 
     <h4 style="text-align: center;">CLAVES PRESUPUESTALES</h4>
 
+    <%for plaza in @plazas_por_empleado%>
 
-    
-      <fieldset>
+     <fieldset>
             <div class="grid-6-12">
               <label style=" font-weight: bold;">PLAZA: </label>
-              <label style=" font-style: italic;">076221  E018100.0071505</label>
+              <label style=" font-style: italic;"><%=h plaza.clave_presupuestal%></label>
             </div>
 
             <div class="grid-6-12">
@@ -37,13 +37,22 @@
 
             <!-- BOTON DE IMPRESION -->
           <div class="grid-12-12">
-            <% form_for :user, @user, :url => { :action => "imprimir", :controller => "carta_compromiso", :id => Plaza.find(1).id }, :html => { :target => "_blank"} do |f| -%>
+            <% form_for :user, @user, :url => { :action => "imprimir", :controller => "carta_compromiso", :id => plaza }, :html => { :target => "_blank"} do |f| -%>
               <div class="grid-center">
                   <input type="submit" title="IMPRIMIR CARTA COMPROMISO" value="IMPRIMIR CARTA COMPROMISO" />
               </div>
             <%end%>
           </div>
       </fieldset>
+
+
+
+
+    <%end%>
+
+
+    
+     
 
 
 
